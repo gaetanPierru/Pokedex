@@ -1,0 +1,19 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "A pokedex for shiny hunting",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "electron main.js"
+  },
+  "author": "gaetanpierru",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^22.1.0",
+    "electron-builder": "^23.6.0"
+  },
+  "dependencies": {
+    "electron-updater": "^5.3.0"
+  }
+}
