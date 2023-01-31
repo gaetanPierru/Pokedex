@@ -38,6 +38,10 @@ const createWindow = () => {
     event.sender.send('app_version', { version: app.getVersion() });
   });
 
+  ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+  });
+
   autoUpdater.on('update-available', () => {
     win.webContents.send('update_available');
   });
