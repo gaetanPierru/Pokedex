@@ -1,6 +1,6 @@
 {
   "name": "pokedex",
-  "version": "0.0.1",
+  "version": "0.0.1.2",
   "description": "A pokedex for shiny hunting",
   "main": "main.js",
   "scripts": {
