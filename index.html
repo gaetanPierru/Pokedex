@@ -1,50 +1,4 @@
 <!DOCTYPE html>
-<head>
-  <title>Electron Auto Update Example</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 20px;
-      font-family: sans-serif;
-      background-color: #eaeaea;
-      text-align: center;
-    }
-    #notification {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 200px;
-      padding: 20px;
-      border-radius: 5px;
-      background-color: white;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>Electron Auto Update Example</h1>
-
-  <p>
-    We are using Node.js <span id="node-version"></span>, Chromium
-    <span id="chrome-version"></span>, and Electron
-    <span id="electron-version"></span>.
-
-    <span id="version" ></span>
-  </p>
-
-  <div id="notification" class="hidden">
-    <p id="message"></p>
-    <button id="close-button" onClick="window.api.closeNotification()">Close</button>
-    <button id="restart-button" onClick="window.api.restartApp()" >
-      Restart
-    </button>
-  </div>
-
-  <!-- <!DOCTYPE html>
   <html lang="fr">
     <head>
       <meta charset="UTF-8" />
@@ -56,9 +10,16 @@
     <body>
       <div class="container">
         <h1>Pokedex</h1>
+        <div id="notification" class="hidden">
+          <p id="message"></p>
+          <button id="close-button" onClick="window.api.closeNotification()">Close</button>
+          <button id="restart-button" onClick="window.api.restartApp()" >
+            Restart
+          </button>
+        </div>
         <ul id="pokedex"></ul>
       </div>
       <script src="pokemon.js"></script>
     </body>
   </html>
-</body> -->
+</body>
