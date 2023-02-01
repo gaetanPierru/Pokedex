@@ -1,15 +1,14 @@
 const pokedex = document.getElementById('pokedex');
 
-const pagination = 20
-let page = 1
 
-const fetchPokemon = () => {
+const fetchPokemon = (pokemon_species) => {
     const promises = [];
-    for (let i = 20; i <= (page * pagination); i++) {
-        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        promises.push(fetch(url).then((res) => res.json()));
+    for (let i = 0; i < pokemon_species.length; i++) {
+        // console.log(pokemon_species[i]);
+          promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].pokemon_species.url.split("species/")[1]}`).then((res) => res.json()));
     }
     Promise.all(promises).then((results) => {
+        console.log(results)
         const pokemon = results.map((result) => ({
             name: result.name,
             image: result.sprites['front_default'],
@@ -36,4 +35,19 @@ const displayPokemon = (pokemon) => {
     pokedex.innerHTML = pokemonHTMLString;
 };
 
-fetchPokemon();
+
+
+
+const fetchPokemonGen = async (genId) => {
+        console.log(genId);
+
+            const url = `https://pokeapi.co/api/v2/pokedex/${genId}`;
+            const data = await fetch(url)
+            const jsonData = await data.json()
+            console.log(jsonData)
+    
+            fetchPokemon(jsonData.pokemon_entries)
+
+};
+
+fetchPokemonGen(window.location.search.split('gen=')[1])

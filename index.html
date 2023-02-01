@@ -1,25 +1,64 @@
 <!DOCTYPE html>
-  <html lang="fr">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <title>Pokedex</title>
-      <link rel="stylesheet" href="styles/pokemon.css" />
-    </head>
-    <body>
-      <div class="container">
-        <h1>Pokedex</h1>
-        <div id="notification" class="hidden">
-          <p id="message"></p>
-          <button id="close-button" onClick="window.api.closeNotification()">Close</button>
-          <button id="restart-button" onClick="window.api.restartApp()" >
-            Restart
-          </button>
-        </div>
-        <ul id="pokedex"></ul>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pokedex </title>
+    <link rel="stylesheet" href="styles/pokemon.css" />
+  </head>
+  <body>
+    <script>
+      function redirigeGen(gen) {
+        window.location = gen;
+      }
+    </script>
+
+    <select name="generation" onchange="redirigeGen(event.target.value)">
+      <option value="index.html">--- choisissez une generation ---</option>
+      <option value="gen.html?gen=1">Pokedex Nationel</option>
+      <option value="gen.html?gen=2">Pokedex  Kanto</option>
+      <option value="gen.html?gen=7">Pokedex  Johto</option>
+      <option value="gen.html?gen=4">Pokedex  Hoenn</option>
+      <option value="gen.html?gen=6">Pokedex  Sinnoh</option>
+      <option value="gen.html?gen=9">Pokedex  Unova</option>
+      <option value="gen.html?gen=12">Pokedex Kalos centre</option>
+      <option value="gen.html?gen=13">Pokedex Kalos costal</option>
+      <option value="gen.html?gen=14">Pokedex Kalos montagneux</option>
+      <option value="gen.html?gen=21">Pokedex Alola</option>
+      <option value="gen.html?gen=27">Pokedex Galar</option>
+      <option value="gen.html?gen=28">Pokedex Galar ile armure</option>
+      <option value="gen.html?gen=29">Pokedex Galar couronneige</option>
+      <option value="gen.html?gen=30">Pokedex Hisui</option>
+      <option value="gen.html?gen=31">Pokedex Paldea</option>
+      <option value="gen.html?gen=11">Pokedex Conquest</option>
+    </select>
+
+    <div class="container">
+      <h1>Pokedex <span id="version"></span></h1>
+      <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="window.api.closeNotification()">
+          Close
+        </button>
+        <button id="restart-button" onClick="window.api.restartApp()">
+          Restart
+        </button>
       </div>
-      <script src="pokemon.js"></script>
-    </body>
-  </html>
-</body>
+      <div id="compteur">
+        
+        <div>
+          <span id="test"></span>
+        </div>
+
+        <h1>Rencontre actuel : <span id="encounter"></span></h1>
+        
+        <button onclick="window.api.shasse()">BDD</button>
+        <button onclick="incremente()">+1</button>
+        <button onclick="shiny()">✨</button>
+      </div>
+    </div>
+    <ul id="pokedex"></ul>
+    <script src="compteur.js"></script>
+  </body>
+</html>

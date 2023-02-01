@@ -6,8 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "electron main.js",
-    "build": "electron-builder build --win --mac --publish never",
-    "deploy": "electron-builder build --win --mac --publish always"
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win  --publish always"
   },
   "author": "gaetanpierru",
   "license": "ISC",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "electron-updater": "^5.3.0",
-    "sqlite-electron": "^2.2.5"
+    "sqlite3": "^5.1.4"
   },
   "repository": {
     "type": "git",

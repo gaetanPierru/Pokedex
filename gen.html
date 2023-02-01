@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>Pokedex</title>
+      <link rel="stylesheet" href="styles/pokemon.css" />
+    </head>
+    <body>
+
+      <div class="container">
+        <h1>Pokedex</h1>
+        <a href="index.html" >home</a>
+        <div id="notification" class="hidden">
+          <p id="message"></p>
+          <button id="close-button" onClick="window.api.closeNotification()">Close</button>
+          <button id="restart-button" onClick="window.api.restartApp()" >
+            Restart
+          </button>
+        </div>
+        <ul id="pokedex"></ul>
+      </div>
+      <script src="pokemon.js"></script>
+    </body>
+  </html>
+</body>
