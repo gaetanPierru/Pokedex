@@ -1,13 +1,13 @@
 {
   "name": "pokedex",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A pokedex for shiny hunting",
   "main": "main.js",
   "scripts": {
     "test": "test",
     "start": "electron main.js",
-    "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "build": "electron-builder build --win --mac --publish never",
+    "deploy": "electron-builder build --win --mac --publish always"
   },
   "author": "gaetanpierru",
   "license": "ISC",
