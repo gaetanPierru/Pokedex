@@ -3,3 +3,5 @@ node_modules
 electron-builder.yml
 
 dist
+
+db.sqlite3

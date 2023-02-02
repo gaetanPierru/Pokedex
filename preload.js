@@ -1,13 +1,13 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require("electron");
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const replaceText = (selector, text) => {
-    const element = document.getElementById(selector)
-    if (element) element.innerText = text
-  }
+    const element = document.getElementById(selector);
+    if (element) element.innerText = text;
+  };
 
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(`${type}-version`, process.versions[type])
+  for (const type of ["chrome", "node", "electron"]) {
+    replaceText(`${type}-version`, process.versions[type]);
   }
 
   const version = document.getElementById("version");
@@ -39,23 +39,43 @@ window.addEventListener('DOMContentLoaded', async () => {
   ipcRenderer.on("pokedex", (event, arg) => {
     ipcRenderer.removeAllListeners("pokedex");
     console.log(arg);
-    fetchPokemon(arg)
+    fetchPokemon(arg);
   });
-})
+
+  ipcRenderer.on("shiny", (event, arg) => {
+    ipcRenderer.removeAllListeners("shiny");
+    console.log("doit fermer la shasse");
+
+    let sound = new Audio("./audio/assets/capture.mp3");
+    sound.play();
+
+    setTimeout(() => {
+      const currentShasse = document.getElementById("compteur");
+
+      currentShasse.classList.remove("hidden");
+      window.location = "index.html";
+    }, 5000);
+  });
+});
 
 const fetchPokemon = (pokemon_species) => {
   const promises = [];
   for (let i = 0; i < pokemon_species.length; i++) {
     // console.log(pokemon_species[i]);
-    promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].PokemonId}`).then((res) => res.json()));
+    promises.push(
+      fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].PokemonId}`
+      ).then((res) => res.json())
+    );
   }
   Promise.all(promises).then((results) => {
-    console.log(results)
-    const pokemon = results.map((result) => ({
+    console.log(results);
+    const pokemon = results.map((result, i) => ({
       name: result.name,
-      image: result.sprites['front_shiny'],
-      type: result.types.map((type) => type.type.name).join(', '),
-      id: result.id
+      image: result.sprites["front_shiny"],
+      type: result.types.map((type) => type.type.name).join(", "),
+      compteur: pokemon_species[i].Compteur,
+      id: result.id,
     }));
     displayPokemon(pokemon);
   });
@@ -64,33 +84,55 @@ const fetchPokemon = (pokemon_species) => {
 const displayPokemon = (pokemon) => {
   console.log(pokemon);
   const pokemonHTMLString = pokemon
-    .map(
-      (pokeman) => `
-      <li class="card">
-          <img class="card-image" src="${pokeman.image}"/>
-          <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
-          <p class="card-subtitle">Type: ${pokeman.type}</p>
-      </li>
-  `
-    )
-    .join('');
+    .map((pokeman) => {
+      const rdm = Math.round(Math.random() * 100);
+      if (rdm >= 70 && rdm <= 99) {
+        return `
+        <li class="card ShinyCapture super">
+            <h3 class="compteurPokemon">${pokeman.compteur} rencontres</h3>
+            <img class="card-image" src="${pokeman.image}"/>
+              <h2 class="card-title"> ${pokeman.name}</h2>
+        </li>
+    `;
+      } else {
+        if (rdm == 100) {
+          return `
+          <li class="card ShinyCapture hyper">
+              <h3 class="compteurPokemon">${pokeman.compteur} rencontres</h3>
+              <img class="card-image" src="${pokeman.image}"/>
+              <h2 class="card-title">${pokeman.name}</h2>
+          </li>
+      `;
+        }
+        return `
+        <li class="card ShinyCapture">
+            <h3 class="compteurPokemon">${pokeman.compteur} rencontres</h3>
+            <img class="card-image" src="${pokeman.image}"/>
+            <h2 class="card-title">${pokeman.name}</h2>
+        </li>
+    `;
+      }
+    })
+    .join("");
   pokedex.innerHTML = pokemonHTMLString;
 };
 
-contextBridge.exposeInMainWorld('api', {
+contextBridge.exposeInMainWorld("api", {
   closeNotification: () => {
     notification.classList.add("hidden");
   },
   restartApp: () => {
     ipcRenderer.send("restart_app");
   },
-  shasse: async () => {
+  shiny: (event) => {
+    console.log(event);
+    EnvoieDonne(event);
+  },
+});
 
-    document.getElementById('test').innerText = 'Output: ';
-
-  }
-})
-
+function EnvoieDonne(objetPokemon) {
+  ipcRenderer.send("shiny", objetPokemon.pkmn, objetPokemon.encounter);
+}
 
 /*
 

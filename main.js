@@ -54,6 +54,15 @@ ipcMain.on('pokedex', (event) => {
   })
 });
 
+ipcMain.on('shiny', (event, pkmn, compteur) => {
+  database.run("INSERT INTO pokedex(PokemonId, Shiny, Compteur) VALUES(?, ?, ?)",[pkmn, 1, compteur], (err, rows) => {
+   if (err) {
+     throw err;
+   }
+   event.sender.send('shiny');
+ })
+});
+
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
@@ -61,6 +70,7 @@ ipcMain.on('restart_app', () => {
 autoUpdater.on('update-available', () => {
   win.webContents.send('update_available');
 });
+
 autoUpdater.on('update-downloaded', () => {
   win.webContents.send('update_downloaded');
 });

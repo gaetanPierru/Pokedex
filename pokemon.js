@@ -1,10 +1,10 @@
 const pokedex = document.getElementById('pokedex');
+const test = document.getElementById('test');
 
 
 const fetchPokemon = (pokemon_species) => {
     const promises = [];
     for (let i = 0; i < pokemon_species.length; i++) {
-        // console.log(pokemon_species[i]);
           promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].pokemon_species.url.split("species/")[1]}`).then((res) => res.json()));
     }
     Promise.all(promises).then((results) => {
@@ -24,7 +24,7 @@ const displayPokemon = (pokemon) => {
     const pokemonHTMLString = pokemon
         .map(
             (pokeman) => `
-        <li class="card">
+        <li class="card" onClick="debutShasse(${pokeman.id})">
             <img class="card-image" src="${pokeman.image}"/>
             <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
             <p class="card-subtitle">Type: ${pokeman.type}</p>
@@ -35,7 +35,9 @@ const displayPokemon = (pokemon) => {
     pokedex.innerHTML = pokemonHTMLString;
 };
 
-
+function debutShasse(id){
+    window.location = `index.html?pokemon=${id}`
+}
 
 
 const fetchPokemonGen = async (genId) => {
