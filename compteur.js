@@ -65,7 +65,7 @@ const displayPokemon = (pokemon) => {
   const pokemonHTMLString = pokemon
     .map(
       (pokeman) => `
-        <li class="card">
+        <li class="cardbetter">
             <img class="card-image" src="${pokeman.imageShiny}"/>
             <p class="card-subtitle">Type: Shiny</p>
         </li>
@@ -75,7 +75,7 @@ const displayPokemon = (pokemon) => {
             <button class="buttonShiny" onclick="shiny()">✨</button>
         </div>
         
-        <li class="card">
+        <li class="cardbetter">
             <img class="card-image" src="${pokeman.image}"/>
             <p class="card-subtitle">Type: Normal</p>
         </li>
