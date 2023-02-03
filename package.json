@@ -1,6 +1,6 @@
 {
   "name": "pokedex",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "A pokedex for shiny hunting",
   "main": "main.js",
   "scripts": {
@@ -24,6 +24,6 @@
     "url": "https://github.com/gaetanPierru/Pokedex.git"
   },
   "win": {
-    "icon": "bin/images/pokedex.ico"
+    "icon": "bin/images/icon.ico"
   }
 }

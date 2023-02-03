@@ -15,7 +15,7 @@ const createWindow = () => {
    win = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: __dirname + '/images/pokedex.ico',
+    icon: __dirname + '/images/icon.ico',
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
