@@ -13,14 +13,13 @@ database.run("CREATE TABLE IF NOT EXISTS pokedex (id	INTEGER NOT NULL,PokemonId	
 
 const createWindow = () => {
    win = new BrowserWindow({
-    width: 800,
-    height: 600,
     icon: __dirname + '/images/icon.ico',
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
+  win.maximize()
   win.loadFile('index.html')
 
   win.once('ready-to-show', () => {
