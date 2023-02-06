@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pokedex </title>
+    <title>Pokedex</title>
     <link rel="stylesheet" href="styles/pokemon.css" />
   </head>
   <body>
@@ -14,34 +14,38 @@
       }
     </script>
 
-<div class="head">
-  <select name="generation" onchange="redirigeGen(event.target.value)">
-    <option value="index.html">--- choisissez un pokedex ---</option>
-    <option value="gen.html?gen=1">Pokedex Nationel</option>
-    <option value="gen.html?gen=2">Pokedex  Kanto</option>
-    <option value="gen.html?gen=7">Pokedex  Johto</option>
-    <option value="gen.html?gen=4">Pokedex  Hoenn</option>
-    <option value="gen.html?gen=6">Pokedex  Sinnoh</option>
-    <option value="gen.html?gen=9">Pokedex  Unova</option>
-    <option value="gen.html?gen=12">Pokedex Kalos centre</option>
-    <option value="gen.html?gen=13">Pokedex Kalos costal</option>
-    <option value="gen.html?gen=14">Pokedex Kalos montagneux</option>
-    <option value="gen.html?gen=21">Pokedex Alola</option>
-    <option value="gen.html?gen=27">Pokedex Galar</option>
-    <option value="gen.html?gen=28">Pokedex Galar ile armure</option>
-    <option value="gen.html?gen=29">Pokedex Galar couronneige</option>
-    <option value="gen.html?gen=30">Pokedex Hisui</option>
-    <option value="gen.html?gen=31">Pokedex Paldea</option>
-    <option value="gen.html?gen=11">Pokedex Conquest</option>
-  </select>
+    <div class="head">
+      <select name="generation" onchange="redirigeGen(event.target.value)">
+        <option value="index.html">--- choisissez un pokedex ---</option>
+        <option value="gen.html?gen=1">Pokedex Nationel</option>
+        <option value="gen.html?gen=2">Pokedex Kanto</option>
+        <option value="gen.html?gen=7">Pokedex Johto</option>
+        <option value="gen.html?gen=4">Pokedex Hoenn</option>
+        <option value="gen.html?gen=6">Pokedex Sinnoh</option>
+        <option value="gen.html?gen=9">Pokedex Unova</option>
+        <option value="gen.html?gen=12">Pokedex Kalos centre</option>
+        <option value="gen.html?gen=13">Pokedex Kalos costal</option>
+        <option value="gen.html?gen=14">Pokedex Kalos montagneux</option>
+        <option value="gen.html?gen=21">Pokedex Alola</option>
+        <option value="gen.html?gen=27">Pokedex Galar</option>
+        <option value="gen.html?gen=28">Pokedex Galar ile armure</option>
+        <option value="gen.html?gen=29">Pokedex Galar couronneige</option>
+        <option value="gen.html?gen=30">Pokedex Hisui</option>
+        <option value="gen.html?gen=31">Pokedex Paldea</option>
+        <option value="gen.html?gen=11">Pokedex Conquest</option>
+      </select>
 
-  <div id="audio">
-    <button id="precedent" onclick="previousMusic()">precedent</button>
-    <audio id="music" src="./audio/furret walk around the world.mp3" controls loop ></audio> 
-    <button id="suivant" onclick="nextMusic()">prochaine</button>
-  </div>
-</div>
-
+      <div id="audio">
+        <button id="precedent" onclick="previousMusic()">precedent</button>
+        <audio
+          id="music"
+          src="./audio/furret walk around the world.mp3"
+          controls
+          loop
+        ></audio>
+        <button id="suivant" onclick="nextMusic()">prochaine</button>
+      </div>
+    </div>
     <div class="container">
       <h1>Pokedex <span id="version"></span></h1>
       <div id="notification" class="hidden">
@@ -54,10 +58,7 @@
         </button>
       </div>
       <div id="compteur" class="hidden">
-        
-        <div id="shasse">
-          
-        </div>
+        <div id="shasse"></div>
 
         <h1>Rencontre actuel : <span id="encounter"></span></h1>
       </div>

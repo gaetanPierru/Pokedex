@@ -4,7 +4,7 @@ let currentSong = 0;
 const music = ["furret walk around the world.mp3", "Pokémon XY - Emotion.mp3"];
 
 function playMusic() {
-    check()
+  check()
   const song = document.getElementById("music");
   song.src = "./audio/" + music[currentSong];
 }
@@ -82,7 +82,7 @@ const displayPokemon = (pokemon) => {
     `
     )
     .join("");
-    shasse.innerHTML = pokemonHTMLString;
+  shasse.innerHTML = pokemonHTMLString;
 };
 
 function incremente() {

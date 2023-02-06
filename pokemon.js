@@ -5,7 +5,7 @@ const test = document.getElementById('test');
 const fetchPokemon = (pokemon_species) => {
     const promises = [];
     for (let i = 0; i < pokemon_species.length; i++) {
-          promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].pokemon_species.url.split("species/")[1]}`).then((res) => res.json()));
+        promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_species[i].pokemon_species.url.split("species/")[1]}`).then((res) => res.json()));
     }
     Promise.all(promises).then((results) => {
         console.log(results)
@@ -35,20 +35,20 @@ const displayPokemon = (pokemon) => {
     pokedex.innerHTML = pokemonHTMLString;
 };
 
-function debutShasse(id){
+function debutShasse(id) {
     window.location = `index.html?pokemon=${id}`
 }
 
 
 const fetchPokemonGen = async (genId) => {
-        console.log(genId);
+    console.log(genId);
 
-            const url = `https://pokeapi.co/api/v2/pokedex/${genId}`;
-            const data = await fetch(url)
-            const jsonData = await data.json()
-            console.log(jsonData)
-    
-            fetchPokemon(jsonData.pokemon_entries)
+    const url = `https://pokeapi.co/api/v2/pokedex/${genId}`;
+    const data = await fetch(url)
+    const jsonData = await data.json()
+    console.log(jsonData)
+
+    fetchPokemon(jsonData.pokemon_entries)
 
 };
 
