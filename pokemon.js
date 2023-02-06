@@ -1,6 +1,21 @@
 const pokedex = document.getElementById('pokedex');
 const test = document.getElementById('test');
 
+let pokemon;
+let search = "";
+
+
+const selectElement = document.querySelector('#search');
+
+selectElement.addEventListener('change', (event) => {
+  console.log(event.target.value)
+  search= event.target.value
+  displayPokemon(pokemon)
+});
+
+selectElement.addEventListener('input', (event) => {
+    selectElement.dispatchEvent(new Event('change'));
+  });
 
 const fetchPokemon = (pokemon_species) => {
     const promises = [];
@@ -9,7 +24,7 @@ const fetchPokemon = (pokemon_species) => {
     }
     Promise.all(promises).then((results) => {
         console.log(results)
-        const pokemon = results.map((result) => ({
+         pokemon = results.map((result) => ({
             name: result.name,
             image: result.sprites['front_default'],
             type: result.types.map((type) => type.type.name).join(', '),
@@ -20,9 +35,15 @@ const fetchPokemon = (pokemon_species) => {
 };
 
 const displayPokemon = (pokemon) => {
+    
+    const Pokfilter = pokemon.filter((pokemon) => {
+        return (
+            pokemon.name?.toLowerCase().includes(search?.toLowerCase()))
+    })
+    
+    
     console.log(pokemon);
-    const pokemonHTMLString = pokemon
-        .map(
+    const pokemonHTMLString = Pokfilter.map(
             (pokeman) => `
         <li class="card" onClick="debutShasse(${pokeman.id})">
             <img class="card-image" src="${pokeman.image}"/>

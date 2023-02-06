@@ -47,8 +47,15 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
+
+
+ipcMain.on('shiny', (event, pkmn, compteur) => {
+  database.run("INSERT INTO pokedex(PokemonId, Shiny, Compteur) VALUES(?, ?, ?)", [pkmn, 1, compteur], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    event.sender.send('shiny');
+  })
 });
 
 ipcMain.on('pokedex', (event) => {
@@ -61,13 +68,8 @@ ipcMain.on('pokedex', (event) => {
   })
 });
 
-ipcMain.on('shiny', (event, pkmn, compteur) => {
-  database.run("INSERT INTO pokedex(PokemonId, Shiny, Compteur) VALUES(?, ?, ?)", [pkmn, 1, compteur], (err, rows) => {
-    if (err) {
-      throw err;
-    }
-    event.sender.send('shiny');
-  })
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
 });
 
 ipcMain.on('restart_app', () => {
